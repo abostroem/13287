@@ -18,6 +18,7 @@ def make_fuv_finder_plot(stis_img, wfpc2_cc_offset, sn_yloc_stis = 340):
 	wfpc2_img = fits.getdata('hst_08645_11_wfpc2_f300w_wf/hst_08645_11_wfpc2_f300w_wf_drz.fits', 1)
 	orientat = 36.6144
 	rot_wfpc2_img = rotate(wfpc2_img, orientat)
+	wfpc2_y_start = 750
 	
 	fig = pyplot.figure(figsize = [20, 15])
 	ax1 = fig.add_subplot(1, 3, 1)
@@ -34,7 +35,7 @@ def make_fuv_finder_plot(stis_img, wfpc2_cc_offset, sn_yloc_stis = 340):
 	im1 = ax1.imshow(rot_wfpc2_img, interpolation = 'nearest', vmin = 0, vmax = 0.2)
 	ax1.set_ylim(700, 1150)
 	ax1.set_xlim(1100, 1300)
-	ax1.plot([1220, 1220, 1250, 1250, 1220], [750+wfpc2_cc_offset, 1138, 1138, 750+wfpc2_cc_offset, 750+wfpc2_cc_offset], color = 'r')
+	ax1.plot([1220, 1220, 1250, 1250, 1220], [wfpc2_y_start+wfpc2_cc_offset, wfpc2_y_start+wfpc2_cc_offset+stis_slit_height_pix, wfpc2_y_start+wfpc2_cc_offset+stis_slit_height_pix, wfpc2_y_start+wfpc2_cc_offset, wfpc2_y_start+wfpc2_cc_offset], color = 'r')
 	
 	#Make compass
 	north_dx = -50.0*math.sin(orientat*math.pi/180.0)
@@ -50,14 +51,17 @@ def make_fuv_finder_plot(stis_img, wfpc2_cc_offset, sn_yloc_stis = 340):
 	
 	ax2.set_title('STIS Slit position on WFPC2 Image')
 	im2 = ax2.imshow(rot_wfpc2_img, interpolation = 'nearest', vmin = 0, vmax = 0.2)
-	ax2.set_ylim(750+wfpc2_cc_offset, 1138)
+	ax2.set_ylim(wfpc2_y_start+wfpc2_cc_offset, wfpc2_y_start+wfpc2_cc_offset+stis_slit_height_pix)
 	ax2.set_xlim(1220,1250)
 	ax2.axvspan(1220, wfpc2_x_start, color = 'k', alpha = 0.5)
 	ax2.axvspan(wfpc2_x_end, 1250, color = 'k', alpha = 0.5)
+	ax2.set_yticks(np.arange(ax2.get_ylim()[0], ax2.get_ylim()[1], 50))
+	ax2.grid(color = 'w')
 
 	ax3.set_title('Normalized XD profiles from STIS and WFPC2')
-	ax3.plot(np.sum(rot_wfpc2_img[750+wfpc2_cc_offset:1140, wfpc2_x_start:wfpc2_x_end+1], axis = 1)/np.max(np.sum(rot_wfpc2_img[750+wfpc2_cc_offset+120:750+wfpc2_cc_offset+175, wfpc2_x_start:wfpc2_x_end+1], axis = 1)), np.arange(stis_slit_height_pix))
+	ax3.plot(np.sum(rot_wfpc2_img[wfpc2_y_start+wfpc2_cc_offset:wfpc2_y_start+wfpc2_cc_offset+stis_slit_height_pix, wfpc2_x_start:wfpc2_x_end+1], axis = 1)/np.max(np.sum(rot_wfpc2_img[wfpc2_y_start+wfpc2_cc_offset+120:wfpc2_y_start+wfpc2_cc_offset+175, wfpc2_x_start:wfpc2_x_end+1], axis = 1)), np.arange(stis_slit_height_pix))
 	ax3.legend(['WFPC2'], loc = 1)
+	ax3.grid()
 	
 	ax4 = ax3.twinx()
 	img = fits.getdata(stis_img, 1)
