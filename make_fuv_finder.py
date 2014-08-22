@@ -7,7 +7,7 @@ import math
 import pdb
 
 
-def make_fuv_finder_plot(stis_img, wfpc2_cc_offset):
+def make_fuv_finder_plot(stis_img, wfpc2_cc_offset, sn_yloc_stis = 340):
 	'''
 	Plot a 3 panel pdf of the WFPC2 image on the left, cropped to the slit location in the middle
 	and the STIS cross-dispersion profile on the right. The region plotted for WFPC2 was determined
@@ -16,7 +16,7 @@ def make_fuv_finder_plot(stis_img, wfpc2_cc_offset):
 	
 	'''
 	wfpc2_img = fits.getdata('hst_08645_11_wfpc2_f300w_wf/hst_08645_11_wfpc2_f300w_wf_drz.fits', 1)
-	orientat = 36.6
+	orientat = 36.6144
 	rot_wfpc2_img = rotate(wfpc2_img, orientat)
 	
 	fig = pyplot.figure(figsize = [20, 15])
@@ -24,11 +24,11 @@ def make_fuv_finder_plot(stis_img, wfpc2_cc_offset):
 	ax2 = fig.add_subplot(1,3,2)
 	ax3 = fig.add_subplot(1, 3, 3)
 
-	wfpc2_x_start = 1232
-	wfpc2_x_end = 1234
+	wfpc2_x_start = 1229.5
+	wfpc2_x_end = 1234.5
 	wfpc2_platescale = 0.1 #arcsec/pix
 	stis_slit_height_pix = 25.0/wfpc2_platescale
-	stis_slit_width_pix = 0.2/wfpc2_platescale
+	stis_slit_width_pix = 0.5/wfpc2_platescale
 	
 	ax1.set_title('WFPC2 Image of UGC 5189')	
 	im1 = ax1.imshow(rot_wfpc2_img, interpolation = 'nearest', vmin = 0, vmax = 0.2)
@@ -56,7 +56,7 @@ def make_fuv_finder_plot(stis_img, wfpc2_cc_offset):
 	ax2.axvspan(wfpc2_x_end, 1250, color = 'k', alpha = 0.5)
 
 	ax3.set_title('Normalized XD profiles from STIS and WFPC2')
-	ax3.plot(np.sum(rot_wfpc2_img[750+wfpc2_cc_offset:1140, wfpc2_x_start:wfpc2_x_end], axis = 1)/np.max(np.sum(rot_wfpc2_img[750+wfpc2_cc_offset+120:750+wfpc2_cc_offset+175, wfpc2_x_start:wfpc2_x_end], axis = 1)), np.arange(stis_slit_height_pix))
+	ax3.plot(np.sum(rot_wfpc2_img[750+wfpc2_cc_offset:1140, wfpc2_x_start:wfpc2_x_end+1], axis = 1)/np.max(np.sum(rot_wfpc2_img[750+wfpc2_cc_offset+120:750+wfpc2_cc_offset+175, wfpc2_x_start:wfpc2_x_end+1], axis = 1)), np.arange(stis_slit_height_pix))
 	ax3.legend(['WFPC2'], loc = 1)
 	
 	ax4 = ax3.twinx()
@@ -69,8 +69,9 @@ def make_fuv_finder_plot(stis_img, wfpc2_cc_offset):
 
 	
 	add_date_to_plot(ax3)
-	pyplot.savefig('2010jl_finder_image_fuv.pdf')
 	pdb.set_trace()
+	pyplot.savefig('2010jl_finder_image_fuv.pdf')
+
 def add_date_to_plot(ax):
     today = datetime.today()
     xlims = ax.get_xlim()
