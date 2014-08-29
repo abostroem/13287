@@ -7,6 +7,22 @@ from matplotlib.backends.backend_pdf import PdfPages
 
 
 def plot_norm_fuv_xd_profile(dither_pos, flist):
+	'''
+	Plot the XD profile of each dataset taken at each dither position
+	(3 datasets per plot, 4 plots (one for each dither position)
+
+	Each dither is separated by 40.65 FUV MAMA pixels = 1 arcsecond
+
+	The SN is located at y = 340 in the first dither position and offset relative to
+	that position
+
+	Inputs:
+		dither_pos: int
+			dither position (possible values 1, 2, 3, 4)
+		flist: list
+			list of flt files for the FUV MAMA
+
+	'''
 	fig = pyplot.figure(figsize = [10, 5])
 	ax1 = fig.add_subplot(1,2,1)
 	ax2 = fig.add_subplot(1,2,2)
@@ -20,9 +36,9 @@ def plot_norm_fuv_xd_profile(dither_pos, flist):
 			#Dither pattern is 1 arcsec offset = 40.65 pix on FUV MAMA
 			for i in range(0,4):
 				if i == dither_pos-1:
-					ax1.axhline(340.0 + (dither_pos-1.0)*40.65, color = 'k', ls = '--')
+					ax1.axhline(340.0 + (dither_pos-1.0)*40.65, color = 'k', ls = '--', label = 'SN this dither')
 				else:
-					ax1.axhline(340.0 + (i)*40.65, color = 'k', ls = ':')
+					ax1.axhline(340.0 + (i)*40.65, color = 'k', ls = ':', label = 'SN other dithers')
 			ax1.set_ylim(300,800)
 			xlimits = ax1.get_xlim()
 			ax1.set_xlim(0.5, xlimits[1])
