@@ -1,6 +1,5 @@
 from astropy.io import fits
 from stistools.x1d import x1d
-#from matplotlib import pyplot #I'm having issues with Ureka and matplotlib
 import numpy as np
 import os
 import sys
@@ -36,13 +35,6 @@ def make_output_directory(extraction_box_height, extraction_box_start, sn_name, 
 		os.makedirs(new_dir_path)
 	return new_dir_path
 
-def confirm_extraction(filename):
-	'''
-	This file plots the cross dispersion profile of a long slit image and then overplots
-	the extraction location of the spectrum and the background regions, including the
-	spectrum and background extraction boxes
-	'''
-	pass
 
 def extract_fuv_2010jl():
 	'''
