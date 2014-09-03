@@ -73,7 +73,7 @@ def plot_norm_nuv_xd_profile(dither_pos, flist):
 			list of flt files for the FUV MAMA
 
 	'''
-	plate_scale = 40.32
+	plate_scale = 40.32 #pix/arcsec
 	#Try shift derived from NUV[A2CENTER] - FUV[A2CENTER] - FUV[SHIFTA2]
 	#sn_loc_at_dither1 = 340.0 + 232.82385254
 	#Manually derive 120.8
