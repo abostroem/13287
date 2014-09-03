@@ -37,7 +37,8 @@ def make_output_directory(extraction_box_height, extraction_box_start, sn_name, 
 
 def extract_for_a_single_dither_position(dither_exposure_names, dither_number, dither_step,
 										repo_path, output_dir,
-										extraction_box_start, extraction_box_height):
+										extraction_box_start, extraction_box_height,
+										maxsearch = 4):
 	os.environ['oref'] = os.path.join(repo_path, 'oref')+'/'
 	for exposure_number in dither_exposure_names:
 		input_filename = 'ocdd030{}_flt.fits'.format(exposure_number)
@@ -48,7 +49,7 @@ def extract_for_a_single_dither_position(dither_exposure_names, dither_number, d
 		x1d(input = os.path.join(output_dir, input_filename),
 			a2center = extraction_box_start + (dither_number -1) * dither_step,
 			extrsize = extraction_box_height,
-			maxsrch = 4,
+			maxsrch = maxsearch,
 			trailer = os.path.join(output_dir, input_filename.replace('flt.fits', 'trl.txt')))
 
 def extract_fuv_2010jl():
@@ -87,5 +88,45 @@ def extract_fuv_2010jl():
 										extraction_box_start, extraction_box_height)
 
 
+def extract_nuv_2010jl():
+	'''
+	Defines extraction location for 2010jl. Data taken with the NUV MAMA using 4 along
+	the slit dithers.
+
+	The MAMA along-the-slit dither pattern is specified with point spacing = 1 arcseconds
+	For the NUV plate scale = 0.0248 arcsec/pix --> 1 arcsecond = 40.32 pixels.
+
+	The dither position centers the target at ycenter = 461 (340 + 120.8)
+	'''
+	extraction_box_height = 21 #pixels
+	extraction_box_start = 461
+	dither_step = 40.32
+
+	repo_path = get_repository_path()
+	output_dir = make_output_directory(extraction_box_height, extraction_box_start, '2010jl')
+
+
+	extract_for_a_single_dither_position(['d0', 'h0'], 1, dither_step,
+										repo_path, output_dir,
+										extraction_box_start, extraction_box_height,
+										maxsearch = 0)
+
+
+	extract_for_a_single_dither_position(['e0', 'i0'], 2, dither_step,
+										repo_path, output_dir,
+										extraction_box_start, extraction_box_height,
+										maxsearch = 0)
+
+	extract_for_a_single_dither_position(['f0', 'j0'], 3, dither_step,
+										repo_path, output_dir,
+										extraction_box_start, extraction_box_height,
+										maxsearch = 0)
+
+	extract_for_a_single_dither_position(['g0', 'k0'], 4, dither_step,
+										repo_path, output_dir,
+										extraction_box_start, extraction_box_height,
+										maxsearch = 0)
+
 if __name__ == "__main__":
-	extract_fuv_2010jl()
+	#extract_fuv_2010jl()
+	extract_nuv_2010jl()
