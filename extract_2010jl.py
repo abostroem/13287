@@ -35,6 +35,19 @@ def make_output_directory(extraction_box_height, extraction_box_start, sn_name, 
 		os.makedirs(new_dir_path)
 	return new_dir_path
 
+def extract_for_a_single_dither_position(dither_exposure_names, dither_number, dither_step,
+										repo_path, output_dir,
+										extraction_box_start, extraction_box_height):
+	for exposure_number in dither_exposure_names:
+		input_filename = 'ocdd030{}_flt.fits'.format(exposure_number)
+		shutil.copy(os.path.join(repo_path, '2010jl_otfr', input_filename),
+					os.path.join(output_dir, input_filename))
+		shutil.copy(os.path.join(repo_path, '2010jl_otfr', input_filename.replace('flt', 'wav')),
+					os.path.join(output_dir, input_filename.replace('flt', 'wav')))
+		x1d(input = os.path.join(output_dir, input_filename),
+			a2center = extraction_box_start + (dither_number -1) * dither_step,
+			extrsize = extraction_box_height,
+			maxsrch = 4)
 
 def extract_fuv_2010jl():
 	'''
@@ -46,7 +59,7 @@ def extract_fuv_2010jl():
 
 	The dither position centers the target at ycenter = 340
 	'''
-	extraction_box_height = 41 #pixels
+	extraction_box_height = 21 #pixels
 	extraction_box_start = 340
 	dither_step = 40.65
 
@@ -55,46 +68,23 @@ def extract_fuv_2010jl():
 	os.environ['oref'] = os.path.join(repo_path, 'oref')+'/'
 	print os.environ['oref']
 
-	dither_pos_1_exposures = ['10', '50', '90']
-	for exposure_number in dither_pos_1_exposures:
-		input_filename = 'ocdd030{}_flt.fits'.format(exposure_number)
-		shutil.copy(os.path.join(repo_path, '2010jl_otfr', input_filename),
-					os.path.join(output_dir, input_filename))
-		x1d(input = os.path.join(output_dir, input_filename),
-			a2center = extraction_box_start,
-			extrsize = extraction_box_height,
-			maxsrch = 4)
+	extract_for_a_single_dither_position(['10', '50', '90'], 1, dither_step,
+										repo_path, output_dir,
+										extraction_box_start, extraction_box_height)
 
 
-	dither_pos_2_exposures = ['20', '60', 'a0']
-	for exposure_number in dither_pos_2_exposures:
-		input_filename = 'ocdd030{}_flt.fits'.format(exposure_number)
-		shutil.copy(os.path.join(repo_path, '2010jl_otfr', input_filename),
-					os.path.join(output_dir, input_filename))
-		x1d(input = os.path.join(output_dir, input_filename),
-			a2center = extraction_box_start + dither_step,
-			extrsize = extraction_box_height,
-			maxsrch = 4)
+	extract_for_a_single_dither_position(['20', '60', 'a0'], 2, dither_step,
+										repo_path, output_dir,
+										extraction_box_start, extraction_box_height)
 
-	dither_pos_3_exposures = ['30', '70', 'b0']
-	for exposure_number in dither_pos_3_exposures:
-		input_filename = 'ocdd030{}_flt.fits'.format(exposure_number)
-		shutil.copy(os.path.join(repo_path, '2010jl_otfr', input_filename),
-					os.path.join(output_dir, input_filename))
-		x1d(input = os.path.join(output_dir, input_filename),
-			a2center = extraction_box_start + dither_step*2.0,
-			extrsize = extraction_box_height,
-			maxsrch = 4)
+	extract_for_a_single_dither_position(['30', '70', 'b0'], 3, dither_step,
+										repo_path, output_dir,
+										extraction_box_start, extraction_box_height)
 
-	dither_pos_4_exposures = ['40', '80', 'c0']
-	for exposure_number in dither_pos_4_exposures:
-		input_filename = 'ocdd030{}_flt.fits'.format(exposure_number)
-		shutil.copy(os.path.join(repo_path, '2010jl_otfr', input_filename),
-					os.path.join(output_dir, input_filename))
-		x1d(input = os.path.join(output_dir, input_filename),
-			a2center = extraction_box_start + dither_step*3.0,
-			extrsize = extraction_box_height,
-			maxsrch = 4)
+	extract_for_a_single_dither_position(['40', '80', 'c0'], 4, dither_step,
+										repo_path, output_dir,
+										extraction_box_start, extraction_box_height)
+
 
 if __name__ == "__main__":
 	extract_fuv_2010jl()
