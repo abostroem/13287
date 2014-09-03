@@ -17,7 +17,7 @@ def confirm_extraction(filename):
 
 	pixel_num = np.arange(1024)
 	#display image
-	im = ax_img.imshow(img, interpolation = 'nearest', cmap = 'bone', vmin = 0, vmax = np.mean(img))
+	im = ax_img.imshow(img, interpolation = 'nearest', cmap = 'bone', vmin = 0, vmax = max(np.mean(img), 0.01))
 	#plot cross-dispersion profile
 	ax_xd.plot(np.sum(img, axis = 1), pixel_num)
 	#Label extraction location and box
@@ -52,16 +52,34 @@ def confirm_extraction(filename):
 	pyplot.savefig(filename.replace('x1d.fits', 'xtrac_conf.pdf'))
 	pyplot.close()
 
+def confirm_2010jl_fuv():
+	#FUV 2010JL
+	confirm_extraction('2010jl_loc_340_hgt_21/ocdd03010_x1d.fits')
+	confirm_extraction('2010jl_loc_340_hgt_21/ocdd03010_x1d.fits')
+	confirm_extraction('2010jl_loc_340_hgt_21/ocdd03020_x1d.fits')
+	confirm_extraction('2010jl_loc_340_hgt_21/ocdd03030_x1d.fits')
+	confirm_extraction('2010jl_loc_340_hgt_21/ocdd03040_x1d.fits')
+	confirm_extraction('2010jl_loc_340_hgt_21/ocdd03050_x1d.fits')
+	confirm_extraction('2010jl_loc_340_hgt_21/ocdd03060_x1d.fits')
+	confirm_extraction('2010jl_loc_340_hgt_21/ocdd03070_x1d.fits')
+	confirm_extraction('2010jl_loc_340_hgt_21/ocdd03080_x1d.fits')
+	confirm_extraction('2010jl_loc_340_hgt_21/ocdd030a0_x1d.fits')
+	confirm_extraction('2010jl_loc_340_hgt_21/ocdd030b0_x1d.fits')
+	confirm_extraction('2010jl_loc_340_hgt_21/ocdd030c0_x1d.fits')
+
+def confirm_2010jl_nuv():
+	#NUV 2010jl
+	confirm_extraction('2010jl_loc_461_hgt_21/ocdd030d0_x1d.fits')
+	confirm_extraction('2010jl_loc_461_hgt_21/ocdd030e0_x1d.fits')
+	confirm_extraction('2010jl_loc_461_hgt_21/ocdd030f0_x1d.fits')
+	confirm_extraction('2010jl_loc_461_hgt_21/ocdd030g0_x1d.fits')
+	confirm_extraction('2010jl_loc_461_hgt_21/ocdd030h0_x1d.fits')
+	confirm_extraction('2010jl_loc_461_hgt_21/ocdd030i0_x1d.fits')
+	confirm_extraction('2010jl_loc_461_hgt_21/ocdd030j0_x1d.fits')
+	confirm_extraction('2010jl_loc_461_hgt_21/ocdd030k0_x1d.fits')
 if __name__ == "__main__":
-	confirm_extraction('2010jl_loc_340_hgt_41/ocdd03010_x1d.fits')
-	confirm_extraction('2010jl_loc_340_hgt_41/ocdd03010_x1d.fits')
-	confirm_extraction('2010jl_loc_340_hgt_41/ocdd03020_x1d.fits')
-	confirm_extraction('2010jl_loc_340_hgt_41/ocdd03030_x1d.fits')
-	confirm_extraction('2010jl_loc_340_hgt_41/ocdd03040_x1d.fits')
-	confirm_extraction('2010jl_loc_340_hgt_41/ocdd03050_x1d.fits')
-	confirm_extraction('2010jl_loc_340_hgt_41/ocdd03060_x1d.fits')
-	confirm_extraction('2010jl_loc_340_hgt_41/ocdd03070_x1d.fits')
-	confirm_extraction('2010jl_loc_340_hgt_41/ocdd03080_x1d.fits')
-	confirm_extraction('2010jl_loc_340_hgt_41/ocdd030a0_x1d.fits')
-	confirm_extraction('2010jl_loc_340_hgt_41/ocdd030b0_x1d.fits')
-	confirm_extraction('2010jl_loc_340_hgt_41/ocdd030c0_x1d.fits')
+	#confirm_2010jl_fuv()
+	confirm_2010jl_nuv()
+
+
+
