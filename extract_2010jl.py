@@ -17,7 +17,7 @@ def set_oref():
 	Set environment variable oref to point to folder with reference files
 	'''
 	oref_path = get_repository_path()
-	os.environ['oref'] = os.path.join(oref_path, 'oref')
+	os.environ['oref'] = os.path.join(oref_path, 'oref')+'/'
 
 def make_output_directory(extraction_box_height, extraction_box_start, sn_name, overwrite = False):
 	output_dir = '{}_loc_{}_hgt_{}'.format(sn_name, extraction_box_start, extraction_box_height)
@@ -38,6 +38,7 @@ def make_output_directory(extraction_box_height, extraction_box_start, sn_name, 
 def extract_for_a_single_dither_position(dither_exposure_names, dither_number, dither_step,
 										repo_path, output_dir,
 										extraction_box_start, extraction_box_height):
+	os.environ['oref'] = os.path.join(repo_path, 'oref')+'/'
 	for exposure_number in dither_exposure_names:
 		input_filename = 'ocdd030{}_flt.fits'.format(exposure_number)
 		shutil.copy(os.path.join(repo_path, '2010jl_otfr', input_filename),
@@ -47,7 +48,8 @@ def extract_for_a_single_dither_position(dither_exposure_names, dither_number, d
 		x1d(input = os.path.join(output_dir, input_filename),
 			a2center = extraction_box_start + (dither_number -1) * dither_step,
 			extrsize = extraction_box_height,
-			maxsrch = 4)
+			maxsrch = 4,
+			trailer = os.path.join(output_dir, input_filename.replace('flt.fits', 'trl.txt')))
 
 def extract_fuv_2010jl():
 	'''
@@ -65,8 +67,7 @@ def extract_fuv_2010jl():
 
 	repo_path = get_repository_path()
 	output_dir = make_output_directory(extraction_box_height, extraction_box_start, '2010jl')
-	os.environ['oref'] = os.path.join(repo_path, 'oref')+'/'
-	print os.environ['oref']
+
 
 	extract_for_a_single_dither_position(['10', '50', '90'], 1, dither_step,
 										repo_path, output_dir,
