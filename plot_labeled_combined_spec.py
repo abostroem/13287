@@ -4,6 +4,8 @@ import numpy as np
 from datetime import datetime
 from astropy.convolution import convolve, Box1DKernel
 
+from helper_functions import add_date_to_plot
+
 def label_spectra(ax):
 	'''
 	With a dictionary of SN spectral features, plot each feature a its wavelength making

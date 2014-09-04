@@ -6,6 +6,8 @@ from datetime import datetime
 import math
 import pdb
 
+from helper_functions import add_date_to_plot
+
 
 def make_fuv_finder_plot(stis_img, wfpc2_cc_offset, sn_yloc_stis = 340):
 	'''
@@ -76,11 +78,7 @@ def make_fuv_finder_plot(stis_img, wfpc2_cc_offset, sn_yloc_stis = 340):
 	pdb.set_trace()
 	pyplot.savefig('2010jl_finder_image_fuv.pdf')
 
-def add_date_to_plot(ax):
-    today = datetime.today()
-    xlims = ax.get_xlim()
-    ylims = ax.get_ylim()
-    ax.text(xlims[1], -.06*(ylims[1] - ylims[0])+ylims[0], '{}-{}-{}'.format(today.year, today.month, today.day))
-
+#----------------------------
+#----------------------------
 if __name__ == "__main__":
 	make_fuv_finder_plot('2010jl_otfr/ocdd03010_flt.fits', 140) #CC program returned an offset of 138
