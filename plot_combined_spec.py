@@ -37,6 +37,31 @@ def plot_2010jl_nuv():
 	for ifile in flist:
 		plot_indiv_spec_with_combined(ifile, combined_file)
 
+def plot_2005ip_fuv():
+	flist = ['2005ip_otfr/ocdd02010_x1d.fits',
+			'2005ip_otfr/ocdd02020_x1d.fits',
+			'2005ip_otfr/ocdd02030_x1d.fits',
+			'2005ip_otfr/ocdd02040_x1d.fits',
+			'2005ip_otfr/ocdd02050_x1d.fits',
+			'2005ip_otfr/ocdd02060_x1d.fits',
+			'2005ip_otfr/ocdd02070_x1d.fits',
+			'2005ip_otfr/ocdd02080_x1d.fits']
+	combined_file = '2005ip_otfr/2005ip_fuv_x1dsum.fits'
+	for ifile in flist:
+		plot_indiv_spec_with_combined(ifile, combined_file)
+
+def plot_2005ip_nuv():
+	flist = ['2005ip_otfr/ocdd02090_x1d.fits',
+			'2005ip_otfr/ocdd020a0_x1d.fits',
+			'2005ip_otfr/ocdd020b0_x1d.fits',
+			'2005ip_otfr/ocdd020c0_x1d.fits']
+	combined_file = '2005ip_otfr/2005ip_nuv_x1dsum.fits'
+	for ifile in flist:
+		plot_indiv_spec_with_combined(ifile, combined_file)
+
+
 if __name__ == "__main__":
-	plot_2010jl_fuv()
-	plot_2010jl_nuv()
+	#plot_2010jl_fuv()
+	#plot_2010jl_nuv()
+	plot_2005ip_fuv()
+	plot_2005ip_nuv()
