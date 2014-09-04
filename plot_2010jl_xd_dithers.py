@@ -53,6 +53,8 @@ def plot_norm_fuv_xd_profile(dither_pos, flist):
 			ax2.legend()
 	return fig
 
+#----------------------------
+
 def plot_norm_nuv_xd_profile(dither_pos, flist):
 	'''
 	Plot the XD profile of each dataset taken at each dither position
@@ -104,7 +106,12 @@ def plot_norm_nuv_xd_profile(dither_pos, flist):
 			ax2.legend(loc = 'best')
 	return fig
 
+#----------------------------
+
 def make_fuv_plot():
+	'''
+	Make one plot per dither position for 2010JL FUV
+	'''
 	pp = PdfPages('2010jl_xd_profile_for_each_dither_fuv.pdf')
 	flist = glob.glob('2010jl_data/*flt.fits')
 	fig1 = plot_norm_fuv_xd_profile(1, flist)
@@ -117,7 +124,12 @@ def make_fuv_plot():
 	fig4.savefig(pp, format = 'pdf')
 	pp.close()
 
+#----------------------------
+
 def make_nuv_plot():
+	'''
+	Make one plot per dither position for 2010JL NUV
+	'''
 	pp = PdfPages('2010jl_xd_profile_for_each_dither_nuv.pdf')
 	flist = glob.glob('2010jl_data/*flt.fits')
 	fig1 = plot_norm_nuv_xd_profile(1, flist)
@@ -130,6 +142,8 @@ def make_nuv_plot():
 	fig4.savefig(pp, format = 'pdf')
 	pp.close()
 
+#----------------------------
+#----------------------------
 if __name__ == "__main__":
 	#make_fuv_plot()
 	make_nuv_plot()

@@ -4,12 +4,16 @@ from iraf import stsdas,hst_calib,ctools,splice as splice
 from astropy.io import fits
 import os
 
+#----------------------------
+
 def add_weight_column():
 	'''
 	Weight by exposure time?
 	Weight by error?
 	'''
 	pass
+
+#----------------------------
 
 def add_dq_flags_to_edges(input_filename):
 	'''
@@ -21,6 +25,8 @@ def add_dq_flags_to_edges(input_filename):
 	ofile[1].data['dq'][0][-10:] = 4
 	ofile[0].header.add_history('setting dq = 4 for first and last 10 values')
 	ofile.close()
+
+#----------------------------
 
 def splice_file_together(input_flist, output_filename):
 	'''
@@ -46,7 +52,12 @@ def splice_file_together(input_flist, output_filename):
 			#Consider adding a weight column
 			# wgt_name = 'weight',
 
+#----------------------------
+
 def splice_2010jl_fuv():
+	'''
+	Combine all 2010jl FUV 1D extraction files
+	'''
 	flist = ['2010jl_loc_340_hgt_21/ocdd03010_x1d.fits',
 			'2010jl_loc_340_hgt_21/ocdd03070_x1d.fits',
 			'2010jl_loc_340_hgt_21/ocdd03020_x1d.fits',
@@ -64,7 +75,12 @@ def splice_2010jl_fuv():
 
 	splice_file_together(flist, '2010jl_loc_340_hgt_21/2010jl_fuv_x1dsum.fits')
 
+#----------------------------
+
 def splice_2010jl_nuv():
+	'''
+	Combine all 2010JL NUV 1D extraction files
+	'''
 	flist = ['2010jl_loc_461_hgt_21/ocdd030d0_x1d.fits',
 			'2010jl_loc_461_hgt_21/ocdd030h0_x1d.fits',
 			'2010jl_loc_461_hgt_21/ocdd030e0_x1d.fits',
@@ -79,7 +95,12 @@ def splice_2010jl_nuv():
 
 	splice_file_together(flist, '2010jl_loc_461_hgt_21/2010jl_nuv_x1dsum.fits')
 
+#----------------------------
+
 def combine_all_2010jl():
+	'''
+	Combine FUV and NUV 1D extraction files for 2010JL
+	'''
 	flist = ['2010jl_loc_340_hgt_21/ocdd03010_x1d.fits',
 			'2010jl_loc_340_hgt_21/ocdd03070_x1d.fits',
 			'2010jl_loc_340_hgt_21/ocdd03020_x1d.fits',
@@ -105,8 +126,12 @@ def combine_all_2010jl():
 
 	splice_file_together(flist, '2010jl_all_x1dsum.fits')
 
+#----------------------------
 
 def splice_2005ip_fuv():
+	'''
+	Combine all 2005ip FUV 1D extraction files
+	'''
 	flist = ['2005ip_otfr/ocdd02010_x1d.fits',
 			'2005ip_otfr/ocdd02020_x1d.fits',
 			'2005ip_otfr/ocdd02030_x1d.fits',
@@ -121,7 +146,12 @@ def splice_2005ip_fuv():
 
 	splice_file_together(flist, '2005ip_otfr/2005ip_fuv_x1dsum.fits')
 
+#----------------------------
+
 def splice_2005ip_nuv():
+	'''
+	Combine all 2005ip NUV 1D extraction files
+	'''
 	flist = [#'2005ip_otfr/ocdd02090_x1d.fits', #remove from analysis until I can figure out what is going on
 			'2005ip_otfr/ocdd020a0_x1d.fits',
 			'2005ip_otfr/ocdd020b0_x1d.fits',
@@ -132,7 +162,12 @@ def splice_2005ip_nuv():
 
 	splice_file_together(flist, '2005ip_otfr/2005ip_nuv_x1dsum.fits')
 
+#----------------------------
+
 def combine_all_2005ip():
+	'''
+	Combine FUV and NUV 1D extraction files for 2005ip
+	'''
 	flist = ['2005ip_otfr/ocdd02010_x1d.fits',
 			'2005ip_otfr/ocdd02020_x1d.fits',
 			'2005ip_otfr/ocdd02030_x1d.fits',
@@ -151,6 +186,8 @@ def combine_all_2005ip():
 
 	splice_file_together(flist, '2005ip_all_x1dsum.fits')
 
+#----------------------------
+#----------------------------
 if __name__ == "__main__":
 	#splice_2010jl_fuv()
 	#splice_2010jl_nuv()

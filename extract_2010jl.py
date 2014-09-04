@@ -6,20 +6,14 @@ import sys
 import shutil
 import glob
 
-def get_repository_path():
-	current_dir = os.getcwd()
-	users_path = current_dir.split('/13287')[0]
-	repo_path = os.path.join(users_path, '13287')
-	return repo_path
-
-def set_oref():
-	'''
-	Set environment variable oref to point to folder with reference files
-	'''
-	oref_path = get_repository_path()
-	os.environ['oref'] = os.path.join(oref_path, 'oref')+'/'
+from helper_functions import get_repository_path
 
 def make_output_directory(extraction_box_height, extraction_box_start, sn_name, overwrite = False):
+	'''
+	Create an output directory for the extracted files to go into with the name
+		<sn_name>_loc_<extraction_box_start>_hgt_<extraction_box_height>
+	User will be asked before files are deleted if directory already exists
+	'''
 	output_dir = '{}_loc_{}_hgt_{}'.format(sn_name, extraction_box_start, extraction_box_height)
 	repo_path = get_repository_path()
 	new_dir_path = os.path.join(repo_path, output_dir)
@@ -35,10 +29,38 @@ def make_output_directory(extraction_box_height, extraction_box_start, sn_name, 
 		os.makedirs(new_dir_path)
 	return new_dir_path
 
+#----------------------------
+
 def extract_for_a_single_dither_position(dither_exposure_names, dither_number, dither_step,
 										repo_path, output_dir,
 										extraction_box_start, extraction_box_height,
 										maxsearch = 4):
+	'''
+	Given a list of exposure names (corresponding to a dither number), extract a 1D spectrum
+	using Calstis.x1d.
+
+	Input:
+		dither_exposure_names: list
+			list of exposure numbers (as strings) to be extracted
+		dither_number: int
+			number to be multiplied by dither_step to create the offset from the extraction
+				box start
+		dither_step : float
+			the number of pixels in each dither step
+		repo_path : str
+			path to local repository
+		output_dir : str
+			directory where extracted files will be saved. flt and wave files are also copied
+		extraction_box_start : float
+			extraction location for the first dither position (y pixel)
+		extraction_box_height : int
+			height of the extraction box
+		maxsearch : int
+			the number of y offsets from the extraction_box_start which are searched to
+			find the spectrum.
+	Output:
+		x1d files
+	'''
 	os.environ['oref'] = os.path.join(repo_path, 'oref')+'/'
 	for exposure_number in dither_exposure_names:
 		input_filename = 'ocdd030{}_flt.fits'.format(exposure_number)
@@ -51,6 +73,8 @@ def extract_for_a_single_dither_position(dither_exposure_names, dither_number, d
 			extrsize = extraction_box_height,
 			maxsrch = maxsearch,
 			trailer = os.path.join(output_dir, input_filename.replace('flt.fits', 'trl.txt')))
+
+#----------------------------
 
 def extract_fuv_2010jl():
 	'''
@@ -87,6 +111,7 @@ def extract_fuv_2010jl():
 										repo_path, output_dir,
 										extraction_box_start, extraction_box_height)
 
+#----------------------------
 
 def extract_nuv_2010jl():
 	'''
@@ -127,6 +152,8 @@ def extract_nuv_2010jl():
 										extraction_box_start, extraction_box_height,
 										maxsearch = 0)
 
+#----------------------------
+#----------------------------
 if __name__ == "__main__":
 	#extract_fuv_2010jl()
 	extract_nuv_2010jl()

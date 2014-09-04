@@ -52,7 +52,12 @@ def confirm_extraction(filename):
 	pyplot.savefig(filename.replace('x1d.fits', 'xtrac_conf.pdf'))
 	pyplot.close()
 
+#----------------------------
+
 def confirm_2010jl_fuv():
+	'''
+	Make plots for all 2010JL FUV files
+	'''
 	#FUV 2010JL
 	confirm_extraction('2010jl_loc_340_hgt_21/ocdd03010_x1d.fits')
 	confirm_extraction('2010jl_loc_340_hgt_21/ocdd03010_x1d.fits')
@@ -67,7 +72,12 @@ def confirm_2010jl_fuv():
 	confirm_extraction('2010jl_loc_340_hgt_21/ocdd030b0_x1d.fits')
 	confirm_extraction('2010jl_loc_340_hgt_21/ocdd030c0_x1d.fits')
 
+#----------------------------
+
 def confirm_2010jl_nuv():
+	'''
+	Make plots for all 2010JL NUV files
+	'''
 	#NUV 2010jl
 	confirm_extraction('2010jl_loc_461_hgt_21/ocdd030d0_x1d.fits')
 	confirm_extraction('2010jl_loc_461_hgt_21/ocdd030e0_x1d.fits')
@@ -77,6 +87,10 @@ def confirm_2010jl_nuv():
 	confirm_extraction('2010jl_loc_461_hgt_21/ocdd030i0_x1d.fits')
 	confirm_extraction('2010jl_loc_461_hgt_21/ocdd030j0_x1d.fits')
 	confirm_extraction('2010jl_loc_461_hgt_21/ocdd030k0_x1d.fits')
+
+#----------------------------
+#----------------------------
+
 if __name__ == "__main__":
 	#confirm_2010jl_fuv()
 	confirm_2010jl_nuv()
