@@ -113,7 +113,8 @@ def splice_2005ip_fuv():
 			'2005ip_otfr/ocdd02040_x1d.fits',
 			'2005ip_otfr/ocdd02050_x1d.fits',
 			'2005ip_otfr/ocdd02060_x1d.fits',
-			'2005ip_otfr/ocdd02070_x1d.fits']
+			'2005ip_otfr/ocdd02070_x1d.fits',
+			'2005ip_otfr/ocdd02080_x1d.fits']
 
 	for ifile in flist:
 		add_dq_flags_to_edges(ifile)
@@ -121,8 +122,7 @@ def splice_2005ip_fuv():
 	splice_file_together(flist, '2005ip_otfr/2005ip_fuv_x1dsum.fits')
 
 def splice_2005ip_nuv():
-	flist = ['2005ip_otfr/ocdd02080_x1d.fits',
-			'2005ip_otfr/ocdd02090_x1d.fits',
+	flist = [#'2005ip_otfr/ocdd02090_x1d.fits', #remove from analysis until I can figure out what is going on
 			'2005ip_otfr/ocdd020a0_x1d.fits',
 			'2005ip_otfr/ocdd020b0_x1d.fits',
 			'2005ip_otfr/ocdd020c0_x1d.fits']
@@ -141,7 +141,7 @@ def combine_all_2005ip():
 			'2005ip_otfr/ocdd02060_x1d.fits',
 			'2005ip_otfr/ocdd02070_x1d.fits',
 			'2005ip_otfr/ocdd02080_x1d.fits',
-			'2005ip_otfr/ocdd02090_x1d.fits',
+			#'2005ip_otfr/ocdd02090_x1d.fits', #remove from analysis until I can figure out what is going on
 			'2005ip_otfr/ocdd020a0_x1d.fits',
 			'2005ip_otfr/ocdd020b0_x1d.fits',
 			'2005ip_otfr/ocdd020c0_x1d.fits']
