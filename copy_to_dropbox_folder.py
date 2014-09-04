@@ -82,9 +82,9 @@ def copy_files_for_2005ip():
 
 	#Copy confirmation plots
 	xtrac_directory = '2005ip_otfr'
-		xtrac_flist = glob.glob(os.path.join(xtrac_directory, '*.pdf'))
+	xtrac_flist = glob.glob(os.path.join(xtrac_directory, '*.pdf'))
 
-		copy_if_new_version_exists(xtrac_flist, copy_to_directory, copy_from_directory)
+	copy_if_new_version_exists(xtrac_flist, copy_to_directory, copy_from_directory)
 
 #----------------------------
 #----------------------------

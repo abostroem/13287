@@ -1,3 +1,7 @@
+import os
+from datetime import datetime
+from matplotlib import pyplot
+
 def get_repository_path():
 	current_dir = os.getcwd()
 	users_path = current_dir.split('/13287')[0]
