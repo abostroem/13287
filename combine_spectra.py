@@ -104,7 +104,58 @@ def combine_all_2010jl():
 		add_dq_flags_to_edges(ifile)
 
 	splice_file_together(flist, '2010jl_all_x1dsum.fits')
+
+
+def splice_2005ip_fuv():
+	flist = ['2005ip_otfr/ocdd02010_x1d.fits',
+			'2005ip_otfr/ocdd02020_x1d.fits',
+			'2005ip_otfr/ocdd02030_x1d.fits',
+			'2005ip_otfr/ocdd02040_x1d.fits',
+			'2005ip_otfr/ocdd02050_x1d.fits',
+			'2005ip_otfr/ocdd02060_x1d.fits',
+			'2005ip_otfr/ocdd02070_x1d.fits']
+
+	for ifile in flist:
+		add_dq_flags_to_edges(ifile)
+
+	splice_file_together(flist, '2005ip_otfr/2005ip_fuv_x1dsum.fits')
+
+def splice_2005ip_nuv():
+	flist = ['2005ip_otfr/ocdd02080_x1d.fits',
+			'2005ip_otfr/ocdd02090_x1d.fits',
+			'2005ip_otfr/ocdd020a0_x1d.fits',
+			'2005ip_otfr/ocdd020b0_x1d.fits',
+			'2005ip_otfr/ocdd020c0_x1d.fits']
+
+	for ifile in flist:
+		add_dq_flags_to_edges(ifile)
+
+	splice_file_together(flist, '2005ip_otfr/2005ip_nuv_x1dsum.fits')
+
+def combine_all_2005ip():
+	flist = ['2005ip_otfr/ocdd02010_x1d.fits',
+			'2005ip_otfr/ocdd02020_x1d.fits',
+			'2005ip_otfr/ocdd02030_x1d.fits',
+			'2005ip_otfr/ocdd02040_x1d.fits',
+			'2005ip_otfr/ocdd02050_x1d.fits',
+			'2005ip_otfr/ocdd02060_x1d.fits',
+			'2005ip_otfr/ocdd02070_x1d.fits',
+			'2005ip_otfr/ocdd02080_x1d.fits',
+			'2005ip_otfr/ocdd02090_x1d.fits',
+			'2005ip_otfr/ocdd020a0_x1d.fits',
+			'2005ip_otfr/ocdd020b0_x1d.fits',
+			'2005ip_otfr/ocdd020c0_x1d.fits']
+
+	for ifile in flist:
+		add_dq_flags_to_edges(ifile)
+
+	splice_file_together(flist, '2005ip_all_x1dsum.fits')
+
 if __name__ == "__main__":
-	splice_2010jl_fuv()
-	splice_2010jl_nuv()
-	combine_all_2010jl()
+	#splice_2010jl_fuv()
+	#splice_2010jl_nuv()
+	#combine_all_2010jl()
+
+	splice_2005ip_fuv()
+	splice_2005ip_nuv()
+	combine_all_2005ip()
