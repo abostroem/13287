@@ -79,6 +79,32 @@ def splice_2010jl_nuv():
 
 	splice_file_together(flist, '2010jl_loc_461_hgt_21/2010jl_nuv_x1dsum.fits')
 
+def combine_all_2010jl():
+	flist = ['2010jl_loc_340_hgt_21/ocdd03010_x1d.fits',
+			'2010jl_loc_340_hgt_21/ocdd03070_x1d.fits',
+			'2010jl_loc_340_hgt_21/ocdd03020_x1d.fits',
+			'2010jl_loc_340_hgt_21/ocdd03080_x1d.fits',
+			'2010jl_loc_340_hgt_21/ocdd03030_x1d.fits',
+			'2010jl_loc_340_hgt_21/ocdd030a0_x1d.fits',
+			'2010jl_loc_340_hgt_21/ocdd03040_x1d.fits',
+			'2010jl_loc_340_hgt_21/ocdd030b0_x1d.fits',
+			'2010jl_loc_340_hgt_21/ocdd03050_x1d.fits',
+			'2010jl_loc_340_hgt_21/ocdd030c0_x1d.fits',
+			'2010jl_loc_340_hgt_21/ocdd03060_x1d.fits',
+			'2010jl_loc_461_hgt_21/ocdd030d0_x1d.fits',
+			'2010jl_loc_461_hgt_21/ocdd030h0_x1d.fits',
+			'2010jl_loc_461_hgt_21/ocdd030e0_x1d.fits',
+			'2010jl_loc_461_hgt_21/ocdd030i0_x1d.fits',
+			'2010jl_loc_461_hgt_21/ocdd030f0_x1d.fits',
+			'2010jl_loc_461_hgt_21/ocdd030j0_x1d.fits',
+			'2010jl_loc_461_hgt_21/ocdd030g0_x1d.fits',
+			'2010jl_loc_461_hgt_21/ocdd030k0_x1d.fits']
+
+	for ifile in flist:
+		add_dq_flags_to_edges(ifile)
+
+	splice_file_together(flist, '2010jl_all_x1dsum.fits')
 if __name__ == "__main__":
 	splice_2010jl_fuv()
 	splice_2010jl_nuv()
+	combine_all_2010jl()
