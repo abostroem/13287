@@ -18,7 +18,7 @@ def make_fuv_finder_plot(stis_img, wfc3_cc_offset, sn_yloc_stis = 340):
 
 	'''
 	wfc3_img = fits.getdata('2010jl_keck/icd704020_drz.fits', 1)
-	orientat = 153.72+90
+	orientat = -153.72 + 36.6   #-WFC3 ORIENTAT + STIS ORIENTAT
 	rot_wfc3_img = rotate(wfc3_img, orientat)
 	wfc3_y_start = 511
 
@@ -27,11 +27,11 @@ def make_fuv_finder_plot(stis_img, wfc3_cc_offset, sn_yloc_stis = 340):
 	ax2 = fig.add_subplot(1,3,2)
 	ax3 = fig.add_subplot(1, 3, 3)
 
-	wfc3_x_start = 714.7
-	wfc3_x_end = 727.4
+	wfc3_x_start = 717.0 #Derived by visual inspection of image compares with WFPC2 image
 	wfc3_platescale =  0.0394 #arcsec/pix
-	stis_slit_height_pix = int(25.0/wfc3_platescale)-35
+	stis_slit_height_pix = int(25.0/wfc3_platescale)
 	stis_slit_width_pix = 0.5/wfc3_platescale
+	wfc3_x_end = wfc3_x_start + stis_slit_width_pix
 
 	ax1.set_title('WFC3 Image of 2010JL')
 	im1 = ax1.imshow(rot_wfc3_img, interpolation = 'nearest', vmin = 0, vmax = 0.1)
@@ -67,9 +67,10 @@ def make_fuv_finder_plot(stis_img, wfc3_cc_offset, sn_yloc_stis = 340):
 	wfc3_xd_upper_x = wfc3_x_end+1
 	#Choose a small y region of background to normalize by
 	normalization = np.max(np.sum(rot_wfc3_img[wfc3_y_start+wfc3_cc_offset+120:wfc3_y_start+wfc3_cc_offset+175, wfc3_x_start:wfc3_x_end+1], axis = 1))
-	ax3.plot(np.sum(rot_wfc3_img[wfc3_xd_lower_y:wfc3_xd_upper_y, wfc3_xd_lower_x:wfc3_xd_upper_x], axis = 1)/normalization, np.arange(stis_slit_height_pix)+10)
+	ax3.plot(np.sum(rot_wfc3_img[wfc3_xd_lower_y:wfc3_xd_upper_y, wfc3_xd_lower_x:wfc3_xd_upper_x], axis = 1)/normalization, np.arange(stis_slit_height_pix))
+	ax3.set_ylim(0-25, stis_slit_height_pix-25) #Just shift by 25, relative scales are based on plate scale
 	ax3.legend(['WFC3'], loc = 1)
-	ax3.set_ylim(-25, 625)
+	#ax3.set_ylim(-25, 625)
 	ax3.grid()
 
 	ax4 = ax3.twinx()
