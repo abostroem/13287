@@ -252,7 +252,7 @@ def splice_2006gy_fuv():
 	'''
 	Combine all 2006gy FUV 1D extraction files
 	'''
-	flist = ['2006gy_loc_499.0_hgt_21/ocdd04030_x1d.fits']
+	flist = ['2006gy_loc_509.0_hgt_20/ocdd04030_crj_x1d.fits']
 
 	for ifile in flist:
 		add_dq_flags_to_edges(ifile)
@@ -265,7 +265,7 @@ def splice_2006gy_nuv():
 	'''
 	Combine all 2006gy NUV 1D extraction files
 	'''
-	flist = ['2006gy_loc_501.0_hgt_21/ocdd04010_x1d.fits']
+	flist = ['2006gy_loc_511.0_hgt_20/ocdd04010_crj_x1d.fits']
 
 	for ifile in flist:
 		add_dq_flags_to_edges(ifile)
@@ -278,8 +278,8 @@ def combine_all_2006gy():
 	'''
 	Combine FUV and NUV 1D extraction files for 2006gy
 	'''
-	flist = ['2006gy_loc_499.0_hgt_21/ocdd04030_x1d.fits',
-		'2006gy_loc_501.0_hgt_21/ocdd04010_x1d.fits']
+	flist = ['2006gy_loc_509.0_hgt_20/ocdd04030_crj_x1d.fits',
+		'2006gy_loc_511.0_hgt_20/ocdd04010_crj_x1d.fits']
 
 	for ifile in flist:
 		add_dq_flags_to_edges(ifile)
