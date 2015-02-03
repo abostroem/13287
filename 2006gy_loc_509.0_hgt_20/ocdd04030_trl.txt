@@ -1,0 +1,77 @@
+
+*** CALSTIS-6 -- Version 3.0 (14-January-2013) ***
+Begin    01-Feb-2015 14:06:27 EST
+2015032140627-I--------------- CALSTIS-6 started -------------------------------
+
+Warning  Grating-aperture throughput correction table (GACTAB) was not found,
+         and no gac corrections will be applied
+Input    /Users/ofox/GitHub/13287/2006gy_loc_509.0_hgt_20/ocdd04030_crj.fits
+Output   /Users/ofox/GitHub/13287/2006gy_loc_509.0_hgt_20/ocdd04030_crj_x1d.fits
+Rootname ocdd04030
+OBSMODE  ACCUM
+APERTURE 52X0.2
+OPT_ELEM G430L
+DETECTOR CCD
+
+XTRACTAB oref$n7p1031qo_1dx.fits
+XTRACTAB PEDIGREE=INFLIGHT 18/05/97
+XTRACTAB DESCRIP =Analysis from prop. 7094
+SPTRCTAB oref$qa31608go_1dt.fits
+
+Imset 1  Begin 14:06:27 EST
+         Input read into memory.
+Order 1  Begin 14:06:27 EST
+X1DCORR  PERFORM
+         Cross correlation offset: 0 pixels
+BACKCORR PERFORM
+BACKCORR COMPLETE
+X1DCORR  COMPLETE
+         Spectrum extracted at y position = 509
+         Extraction box height = 20
+         Background box 1 height = 5 offset -300 from A2CENTER
+         Background box 2 height = 5 offset 300 from A2CENTER
+
+DISPCORR PERFORM
+DISPTAB  oref$l2j0137to_dsp.fits
+DISPTAB  PEDIGREE=INFLIGHT 27/02/1997 24/11/1999
+DISPTAB  DESCRIP =Lindler Postlaunch, May 2000
+APDESTAB oref$obm1723ro_apd.fits
+APDESTAB PEDIGREE=INFLIGHT 01/03/1997 01/03/1997
+APDESTAB DESCRIP =Microscope Meas./Hartig Post-launch Offsets
+INANGTAB oref$h5s11397o_iac.fits
+         Delta = 0.067336 arcsec.
+DISPCORR COMPLETE
+
+HELCORR  PERFORM
+HELCORR  COMPLETE
+
+PHOTTAB  oref$p822207no_pht.fits
+APERTAB  oref$y2r1559to_apt.fits
+APERTAB  PEDIGREE=MODEL
+APERTAB  DESCRIP =Bohlin/Hartig TIM Models Nov. 1998
+PCTAB    oref$q541740no_pct.fits
+TDSTAB   oref$t9a1003so_tds.fits
+FLUXCORR PERFORM
+CTECORR  PERFORM
+CCDTAB   oref$v6n13233o_ccd.fits
+CCDTAB   PEDIGREE=INFLIGHT 01/05/2009 01/05/2009
+CCDTAB   DESCRIP =Proposal 8057, by I. Dashevsky & P. Goudfrooij
+Warning  No PCTAB information in input file.
+Warning  No extraction box photometric correction is used to
+Warning  correct the flux-calibrated result.
+CTECORR  COMPLETE
+FLUXCORR COMPLETE
+
+SGEOCORR OMIT
+
+         Row 1 written to disk.
+Order 1  End 14:06:27 EST
+
+         trace was rotated by = 0.0452275 degree.
+Imset 1  End 14:06:27 EST
+
+Warning  Keyword `XTRACALG' is being added to header.
+End      01-Feb-2015 14:06:27 EST
+
+*** CALSTIS-6 complete ***
+2015032140627-I--------------- CALSTIS-6 completed: OCDD04030 ------------------

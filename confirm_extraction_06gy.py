@@ -10,7 +10,9 @@ def confirm_extraction(filename):
 	spectrum and background extraction boxes
 	'''
 	tbdata = fits.getdata(filename, 1)
-	img = fits.getdata(filename.replace('x1d', 'crj'), 1)
+	#img = fits.getdata(filename.replace('x1d', 'crj'), 1)
+	img = fits.getdata(filename.replace('_x1d', ''), 1)
+	print img
 	fig = pyplot.figure(figsize = [20, 10])
 	ax_img = fig.add_subplot(1, 2, 1)
 	ax_xd = fig.add_subplot(1, 2, 2)
@@ -19,7 +21,7 @@ def confirm_extraction(filename):
 	#display image
 	im = ax_img.imshow(img, interpolation = 'nearest', cmap = 'bone', vmin = 0, vmax = max(np.mean(img), 0.01))
 	#plot cross-dispersion profile
-	ax_xd.plot(np.sum(img, axis = 1), pixel_num)
+	ax_xd.plot(np.median(img, axis = 1), pixel_num)
 	#Label extraction location and box
 	ax_img.plot(pixel_num,tbdata['extrlocy'][0], 'r')
 	ax_img.plot(pixel_num, tbdata['extrlocy'][0]+tbdata['EXTRSIZE'][0]/2.0, 'r--')
@@ -59,7 +61,7 @@ def confirm_2006gy_fuv():
 	Make plots for all 2006gy FUV files
 	'''
 	#FUV 2006gy
-	confirm_extraction('2006gy_loc_499.0_hgt_21/ocdd04030_x1d.fits')
+	confirm_extraction('2006gy_loc_509.0_hgt_20/ocdd04030_crj_x1d.fits')
 
 #----------------------------
 
@@ -68,7 +70,7 @@ def confirm_2006gy_nuv():
 	Make plots for all 2006gy NUV files
 	'''
 	#NUV 2006gy
-	confirm_extraction('2006gy_loc_501.0_hgt_21/ocdd04010_x1d.fits')
+	confirm_extraction('2006gy_loc_511.0_hgt_20/ocdd04010_crj_x1d.fits')
 
 #----------------------------
 #----------------------------
