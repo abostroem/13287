@@ -2,7 +2,7 @@ from astropy.io import fits
 from matplotlib import pyplot
 import numpy as np
 from datetime import datetime
-from astropy.convolution import convolve, Box1DKernel
+from astropy.nddata.convolution import convolve, make_kernel
 
 from helper_functions import add_date_to_plot
 
@@ -52,7 +52,7 @@ def plot_2010jl():
 	fig = pyplot.figure(figsize = [20, 10])
 	ax = fig.add_subplot(1,1,1)
 	deredshift_wl = deredshift_wavelength(tbdata['wavelength'][0][good_indx], redshift)
-	smoothed_signal = convolve(tbdata['flux'][0][good_indx], Box1DKernel(15))
+	smoothed_signal = convolve.convolve(tbdata['flux'][0][good_indx], make_kernel.make_kernel([15],15,'boxcar'))
 
 	ax.plot(deredshift_wl, smoothed_signal, 'b')
 	ax = label_spectra(ax)
@@ -65,7 +65,7 @@ def plot_2010jl():
 
 def plot_2005ip():
 	'''
-	Create a plot of the combined NUV and FUV spectrum of SN 2010jl, label the common SN
+	Create a plot of the combined NUV and FUV spectrum of SN 2005ip, label the common SN
 	lines with different colors for different species and save
 	'''
 	redshift = 0.0072
@@ -76,7 +76,7 @@ def plot_2005ip():
 	fig = pyplot.figure(figsize = [20, 10])
 	ax = fig.add_subplot(1,1,1)
 	deredshift_wl = deredshift_wavelength(tbdata['wavelength'][0][good_indx], redshift)
-	smoothed_signal = convolve(tbdata['flux'][0][good_indx], Box1DKernel(15))
+	smoothed_signal = convolve.convolve(tbdata['flux'][0][good_indx], make_kernel.make_kernel([15],15,'boxcar'))
 
 	ax.plot(deredshift_wl, smoothed_signal, 'b')
 	ax = label_spectra(ax)
@@ -87,6 +87,31 @@ def plot_2005ip():
 	add_date_to_plot(ax)
 	pyplot.savefig('2005ip_combined_labeled.pdf')
 
+def plot_2009ip():
+	'''
+	Create a plot of the combined NUV and FUV spectrum of SN 2009ip, label the common SN
+	lines with different colors for different species and save
+	'''
+	redshift = 0.0072
+	tbdata = fits.getdata('2009ip_all_x1dsum.fits', 1)
+	sdqflags = fits.getval('2009ip_all_x1dsum.fits', 'sdqflags', 1)
+	good_indx = np.where(tbdata['dq'][0]&sdqflags == 0)
+
+	fig = pyplot.figure(figsize = [20, 10])
+	ax = fig.add_subplot(1,1,1)
+	deredshift_wl = deredshift_wavelength(tbdata['wavelength'][0][good_indx], redshift)
+	smoothed_signal = convolve.convolve(tbdata['flux'][0][good_indx], make_kernel.make_kernel([15],15,'boxcar'))
+
+	ax.plot(deredshift_wl, smoothed_signal, 'b')
+	ax = label_spectra(ax)
+	ax.set_xlabel('Rest Wavelength ($\AA$)')
+	ax.set_ylabel('Flux (ergs/cm^2/s/$\AA$)')
+	ax.set_title('Preliminary HST/STIS Spectrum of SN 2009ip (smoothed by 15 pix)')
+	ax.set_ylim(-0.1E-15, 0.25E-15)
+	add_date_to_plot(ax)
+	pyplot.savefig('2009ip_combined_labeled.pdf')
+
 if __name__ == "__main__":
-	#plot_2010jl()
+	plot_2010jl()
 	plot_2005ip()
+	plot_2009ip()

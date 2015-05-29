@@ -81,7 +81,7 @@ def cross_correlate_wfpc2_stis_fuv(input_stis_file):
 	ax3.plot(binned_xd_profile/binned_xd_profile.max(), np.arange(len(binned_xd_profile))+offset[final_max_corr_indx])
 	best_col = rot_wfpc2_img[wfpc2_y_start : wfpc2_y_start+ 2.0*stis_slit_height_pix, columns[final_max_corr_indx]]
 	ax3.plot(best_col/best_col.max(), range(len(best_col)))
-	pdb.set_trace()
+	#pdb.set_trace()
 	print 'highest correlation value = ', np.max(corr)
 	print 'Best offset value = ', offset[final_max_corr_indx]
 	print 'Best WFPC2 column = ', columns[final_max_corr_indx]

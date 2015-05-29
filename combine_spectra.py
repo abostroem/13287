@@ -58,22 +58,22 @@ def splice_2010jl_fuv():
 	'''
 	Combine all 2010jl FUV 1D extraction files
 	'''
-	flist = ['2010jl_loc_340_hgt_21/ocdd03010_x1d.fits',
-			'2010jl_loc_340_hgt_21/ocdd03070_x1d.fits',
-			'2010jl_loc_340_hgt_21/ocdd03020_x1d.fits',
-			'2010jl_loc_340_hgt_21/ocdd03080_x1d.fits',
-			'2010jl_loc_340_hgt_21/ocdd03030_x1d.fits',
-			'2010jl_loc_340_hgt_21/ocdd030a0_x1d.fits',
-			'2010jl_loc_340_hgt_21/ocdd03040_x1d.fits',
-			'2010jl_loc_340_hgt_21/ocdd030b0_x1d.fits',
-			'2010jl_loc_340_hgt_21/ocdd03050_x1d.fits',
-			'2010jl_loc_340_hgt_21/ocdd030c0_x1d.fits',
-			'2010jl_loc_340_hgt_21/ocdd03060_x1d.fits']
+	flist = ['2010jl_loc_327.0_hgt_21/ocdd03010_x1d.fits',
+			'2010jl_loc_327.0_hgt_21/ocdd03070_x1d.fits',
+			'2010jl_loc_327.0_hgt_21/ocdd03020_x1d.fits',
+			'2010jl_loc_327.0_hgt_21/ocdd03080_x1d.fits',
+			'2010jl_loc_327.0_hgt_21/ocdd03030_x1d.fits',
+			'2010jl_loc_327.0_hgt_21/ocdd030a0_x1d.fits',
+			'2010jl_loc_327.0_hgt_21/ocdd03040_x1d.fits',
+			'2010jl_loc_327.0_hgt_21/ocdd030b0_x1d.fits',
+			'2010jl_loc_327.0_hgt_21/ocdd03050_x1d.fits',
+			'2010jl_loc_327.0_hgt_21/ocdd030c0_x1d.fits',
+			'2010jl_loc_327.0_hgt_21/ocdd03060_x1d.fits']
 
 	for ifile in flist:
 		add_dq_flags_to_edges(ifile)
 
-	splice_file_together(flist, '2010jl_loc_340_hgt_21/2010jl_fuv_x1dsum.fits')
+	splice_file_together(flist, '2010jl_loc_327.0_hgt_21/2010jl_fuv_x1dsum.fits')
 
 #----------------------------
 
@@ -81,19 +81,19 @@ def splice_2010jl_nuv():
 	'''
 	Combine all 2010JL NUV 1D extraction files
 	'''
-	flist = ['2010jl_loc_461_hgt_21/ocdd030d0_x1d.fits',
-			'2010jl_loc_461_hgt_21/ocdd030h0_x1d.fits',
-			'2010jl_loc_461_hgt_21/ocdd030e0_x1d.fits',
-			'2010jl_loc_461_hgt_21/ocdd030i0_x1d.fits',
-			'2010jl_loc_461_hgt_21/ocdd030f0_x1d.fits',
-			'2010jl_loc_461_hgt_21/ocdd030j0_x1d.fits',
-			'2010jl_loc_461_hgt_21/ocdd030g0_x1d.fits',
-			'2010jl_loc_461_hgt_21/ocdd030k0_x1d.fits']
+	flist = ['2010jl_loc_323.0_hgt_21/ocdd030d0_x1d.fits',
+			'2010jl_loc_323.0_hgt_21/ocdd030h0_x1d.fits',
+			'2010jl_loc_323.0_hgt_21/ocdd030e0_x1d.fits',
+			'2010jl_loc_323.0_hgt_21/ocdd030i0_x1d.fits',
+			'2010jl_loc_323.0_hgt_21/ocdd030f0_x1d.fits',
+			'2010jl_loc_323.0_hgt_21/ocdd030j0_x1d.fits',
+			'2010jl_loc_323.0_hgt_21/ocdd030g0_x1d.fits',
+			'2010jl_loc_323.0_hgt_21/ocdd030k0_x1d.fits']
 
 	for ifile in flist:
 		add_dq_flags_to_edges(ifile)
 
-	splice_file_together(flist, '2010jl_loc_461_hgt_21/2010jl_nuv_x1dsum.fits')
+	splice_file_together(flist, '2010jl_loc_323.0_hgt_21/2010jl_nuv_x1dsum.fits')
 
 #----------------------------
 
@@ -101,25 +101,25 @@ def combine_all_2010jl():
 	'''
 	Combine FUV and NUV 1D extraction files for 2010JL
 	'''
-	flist = ['2010jl_loc_340_hgt_21/ocdd03010_x1d.fits',
-			'2010jl_loc_340_hgt_21/ocdd03070_x1d.fits',
-			'2010jl_loc_340_hgt_21/ocdd03020_x1d.fits',
-			'2010jl_loc_340_hgt_21/ocdd03080_x1d.fits',
-			'2010jl_loc_340_hgt_21/ocdd03030_x1d.fits',
-			'2010jl_loc_340_hgt_21/ocdd030a0_x1d.fits',
-			'2010jl_loc_340_hgt_21/ocdd03040_x1d.fits',
-			'2010jl_loc_340_hgt_21/ocdd030b0_x1d.fits',
-			'2010jl_loc_340_hgt_21/ocdd03050_x1d.fits',
-			'2010jl_loc_340_hgt_21/ocdd030c0_x1d.fits',
-			'2010jl_loc_340_hgt_21/ocdd03060_x1d.fits',
-			'2010jl_loc_461_hgt_21/ocdd030d0_x1d.fits',
-			'2010jl_loc_461_hgt_21/ocdd030h0_x1d.fits',
-			'2010jl_loc_461_hgt_21/ocdd030e0_x1d.fits',
-			'2010jl_loc_461_hgt_21/ocdd030i0_x1d.fits',
-			'2010jl_loc_461_hgt_21/ocdd030f0_x1d.fits',
-			'2010jl_loc_461_hgt_21/ocdd030j0_x1d.fits',
-			'2010jl_loc_461_hgt_21/ocdd030g0_x1d.fits',
-			'2010jl_loc_461_hgt_21/ocdd030k0_x1d.fits']
+	flist = ['2010jl_loc_327.0_hgt_21/ocdd03010_x1d.fits',
+			'2010jl_loc_327.0_hgt_21/ocdd03070_x1d.fits',
+			'2010jl_loc_327.0_hgt_21/ocdd03020_x1d.fits',
+			'2010jl_loc_327.0_hgt_21/ocdd03080_x1d.fits',
+			'2010jl_loc_327.0_hgt_21/ocdd03030_x1d.fits',
+			'2010jl_loc_327.0_hgt_21/ocdd030a0_x1d.fits',
+			'2010jl_loc_327.0_hgt_21/ocdd03040_x1d.fits',
+			'2010jl_loc_327.0_hgt_21/ocdd030b0_x1d.fits',
+			'2010jl_loc_327.0_hgt_21/ocdd03050_x1d.fits',
+			'2010jl_loc_327.0_hgt_21/ocdd030c0_x1d.fits',
+			'2010jl_loc_327.0_hgt_21/ocdd03060_x1d.fits',
+			'2010jl_loc_323.0_hgt_21/ocdd030d0_x1d.fits',
+			'2010jl_loc_323.0_hgt_21/ocdd030h0_x1d.fits',
+			'2010jl_loc_323.0_hgt_21/ocdd030e0_x1d.fits',
+			'2010jl_loc_323.0_hgt_21/ocdd030i0_x1d.fits',
+			'2010jl_loc_323.0_hgt_21/ocdd030f0_x1d.fits',
+			'2010jl_loc_323.0_hgt_21/ocdd030j0_x1d.fits',
+			'2010jl_loc_323.0_hgt_21/ocdd030g0_x1d.fits',
+			'2010jl_loc_323.0_hgt_21/ocdd030k0_x1d.fits']
 
 	for ifile in flist:
 		add_dq_flags_to_edges(ifile)
@@ -187,12 +187,76 @@ def combine_all_2005ip():
 	splice_file_together(flist, '2005ip_all_x1dsum.fits')
 
 #----------------------------
+
+#----------------------------
+
+def splice_2009ip_fuv():
+	'''
+	Combine all 2009ip FUV 1D extraction files
+	'''
+	flist = ['2009ip_otfr/ocdd01010_x1d.fits',
+			'2009ip_otfr/ocdd01020_x1d.fits',
+			'2009ip_otfr/ocdd01030_x1d.fits',
+			'2009ip_otfr/ocdd01040_x1d.fits',
+			'2009ip_otfr/ocdd01050_x1d.fits',
+			'2009ip_otfr/ocdd01060_x1d.fits',
+			'2009ip_otfr/ocdd01070_x1d.fits',
+			'2009ip_otfr/ocdd01080_x1d.fits']
+
+	for ifile in flist:
+		add_dq_flags_to_edges(ifile)
+
+	splice_file_together(flist, '2009ip_otfr/2009ip_fuv_x1dsum.fits')
+
+#----------------------------
+
+def splice_2009ip_nuv():
+	'''
+	Combine all 2009ip NUV 1D extraction files
+	'''
+	flist = [#'2009ip_otfr/ocdd02090_x1d.fits', #remove from analysis until I can figure out what is going on
+			'2009ip_otfr/ocdd020a0_x1d.fits',
+			'2009ip_otfr/ocdd020b0_x1d.fits',
+			'2009ip_otfr/ocdd020c0_x1d.fits']
+
+	for ifile in flist:
+		add_dq_flags_to_edges(ifile)
+
+	splice_file_together(flist, '2009ip_otfr/2009ip_nuv_x1dsum.fits')
+
+#----------------------------
+
+def combine_all_2009ip():
+	'''
+	Combine FUV and NUV 1D extraction files for 2009ip
+	'''
+	flist = ['2009ip_otfr/ocdd01010_x1d.fits',
+			'2009ip_otfr/ocdd01020_x1d.fits',
+			'2009ip_otfr/ocdd01030_x1d.fits',
+			'2009ip_otfr/ocdd01040_x1d.fits',
+			'2009ip_otfr/ocdd01050_x1d.fits',
+			'2009ip_otfr/ocdd01060_x1d.fits',
+			'2009ip_otfr/ocdd01070_x1d.fits',
+			'2009ip_otfr/ocdd01080_x1d.fits']
+
+	for ifile in flist:
+		add_dq_flags_to_edges(ifile)
+
+	splice_file_together(flist, '2009ip_all_x1dsum.fits')
+
+#----------------------------
+
+
 #----------------------------
 if __name__ == "__main__":
-	#splice_2010jl_fuv()
-	#splice_2010jl_nuv()
-	#combine_all_2010jl()
+	splice_2010jl_fuv()
+	splice_2010jl_nuv()
+	combine_all_2010jl()
 
 	splice_2005ip_fuv()
 	splice_2005ip_nuv()
 	combine_all_2005ip()
+
+	splice_2009ip_fuv()
+#	splice_2009ip_nuv()
+	combine_all_2009ip()
