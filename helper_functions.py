@@ -1,6 +1,5 @@
-import os
 from datetime import datetime
-from matplotlib import pyplot
+import os
 
 def get_repository_path():
 	current_dir = os.getcwd()

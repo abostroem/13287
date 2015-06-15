@@ -88,8 +88,43 @@ def plot_2005ip_nuv():
 #----------------------------
 #----------------------------
 
+def plot_2009ip_fuv():
+	'''
+	Make plots for 2009ip FUV
+	'''
+	flist = ['2009ip_otfr/ocdd01010_x1d.fits',
+			'2009ip_otfr/ocdd01010_x1d.fits',
+			'2009ip_otfr/ocdd01020_x1d.fits',
+			'2009ip_otfr/ocdd01030_x1d.fits',
+			'2009ip_otfr/ocdd01040_x1d.fits',
+			'2009ip_otfr/ocdd01050_x1d.fits',
+			'2009ip_otfr/ocdd01060_x1d.fits',
+			'2009ip_otfr/ocdd01070_x1d.fits',
+			'2009ip_otfr/ocdd01080_x1d.fits']
+	combined_file = '2009ip_otfr/2009ip_fuv_x1dsum.fits'
+	for ifile in flist:
+		plot_indiv_spec_with_combined(ifile, combined_file)
+
+#----------------------------
+
+def plot_2009ip_nuv():
+	'''
+	Make plots for 2009ip NUV
+	'''
+	flist = ['2009ip_otfr/ocdd02090_x1d.fits',
+			'2009ip_otfr/ocdd020a0_x1d.fits',
+			'2009ip_otfr/ocdd020b0_x1d.fits',
+			'2009ip_otfr/ocdd020c0_x1d.fits']
+	combined_file = '2009ip_otfr/2009ip_nuv_x1dsum.fits'
+	for ifile in flist:
+		plot_indiv_spec_with_combined(ifile, combined_file)
+#----------------------------
+#----------------------------
+
 if __name__ == "__main__":
-	#plot_2010jl_fuv()
-	#plot_2010jl_nuv()
+	plot_2010jl_fuv()
+	plot_2010jl_nuv()
 	plot_2005ip_fuv()
 	plot_2005ip_nuv()
+	plot_2009ip_fuv()
+#	plot_2009ip_nuv()

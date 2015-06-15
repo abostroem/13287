@@ -59,18 +59,18 @@ def confirm_2010jl_fuv():
 	Make plots for all 2010JL FUV files
 	'''
 	#FUV 2010JL
-	confirm_extraction('2010jl_loc_340_hgt_21/ocdd03010_x1d.fits')
-	confirm_extraction('2010jl_loc_340_hgt_21/ocdd03010_x1d.fits')
-	confirm_extraction('2010jl_loc_340_hgt_21/ocdd03020_x1d.fits')
-	confirm_extraction('2010jl_loc_340_hgt_21/ocdd03030_x1d.fits')
-	confirm_extraction('2010jl_loc_340_hgt_21/ocdd03040_x1d.fits')
-	confirm_extraction('2010jl_loc_340_hgt_21/ocdd03050_x1d.fits')
-	confirm_extraction('2010jl_loc_340_hgt_21/ocdd03060_x1d.fits')
-	confirm_extraction('2010jl_loc_340_hgt_21/ocdd03070_x1d.fits')
-	confirm_extraction('2010jl_loc_340_hgt_21/ocdd03080_x1d.fits')
-	confirm_extraction('2010jl_loc_340_hgt_21/ocdd030a0_x1d.fits')
-	confirm_extraction('2010jl_loc_340_hgt_21/ocdd030b0_x1d.fits')
-	confirm_extraction('2010jl_loc_340_hgt_21/ocdd030c0_x1d.fits')
+	confirm_extraction('2010jl_loc_331_hgt_21/ocdd03010_x1d.fits')
+	confirm_extraction('2010jl_loc_331_hgt_21/ocdd03010_x1d.fits')
+	confirm_extraction('2010jl_loc_331_hgt_21/ocdd03020_x1d.fits')
+	confirm_extraction('2010jl_loc_331_hgt_21/ocdd03030_x1d.fits')
+	confirm_extraction('2010jl_loc_331_hgt_21/ocdd03040_x1d.fits')
+	confirm_extraction('2010jl_loc_331_hgt_21/ocdd03050_x1d.fits')
+	confirm_extraction('2010jl_loc_331_hgt_21/ocdd03060_x1d.fits')
+	confirm_extraction('2010jl_loc_331_hgt_21/ocdd03070_x1d.fits')
+	confirm_extraction('2010jl_loc_331_hgt_21/ocdd03080_x1d.fits')
+	confirm_extraction('2010jl_loc_331_hgt_21/ocdd030a0_x1d.fits')
+	confirm_extraction('2010jl_loc_331_hgt_21/ocdd030b0_x1d.fits')
+	confirm_extraction('2010jl_loc_331_hgt_21/ocdd030c0_x1d.fits')
 
 #----------------------------
 
@@ -92,7 +92,7 @@ def confirm_2010jl_nuv():
 #----------------------------
 
 if __name__ == "__main__":
-	#confirm_2010jl_fuv()
+	confirm_2010jl_fuv()
 	confirm_2010jl_nuv()
 
 
