@@ -13,7 +13,7 @@ def plot_norm_fuv_xd_profile(dither_pos, flist):
 
 	Each dither is separated by 40.64 FUV MAMA pixels = 1 arcsecond
 
-	The SN is located at y = 340 in the first dither position and offset relative to
+	The SN is located at y = 331 in the first dither position and offset relative to
 	that position
 
 	Inputs:
@@ -24,7 +24,7 @@ def plot_norm_fuv_xd_profile(dither_pos, flist):
 
 	'''
 	plate_scale = 40.65
-	sn_loc_at_dither1 = 340.0
+	sn_loc_at_dither1 = 195+132.#331.0
 	fig = pyplot.figure(figsize = [10, 5])
 	ax1 = fig.add_subplot(1,2,1)
 	ax2 = fig.add_subplot(1,2,2)
@@ -79,7 +79,7 @@ def plot_norm_nuv_xd_profile(dither_pos, flist):
 	#Try shift derived from NUV[A2CENTER] - FUV[A2CENTER] - FUV[SHIFTA2]
 	#sn_loc_at_dither1 = 340.0 + 232.82385254
 	#Manually derive 120.8
-	sn_loc_at_dither1 = 340.0 + 120.82
+	sn_loc_at_dither1 = 262.+61.
 	fig = pyplot.figure(figsize = [10, 5])
 	ax1 = fig.add_subplot(1,2,1)
 	ax2 = fig.add_subplot(1,2,2)
@@ -113,7 +113,7 @@ def make_fuv_plot():
 	Make one plot per dither position for 2010JL FUV
 	'''
 	pp = PdfPages('2010jl_xd_profile_for_each_dither_fuv.pdf')
-	flist = glob.glob('2010jl_data/*flt.fits')
+	flist = glob.glob('SN2010jl/*flt.fits')
 	fig1 = plot_norm_fuv_xd_profile(1, flist)
 	fig1.savefig(pp, format = 'pdf')
 	fig2 = plot_norm_fuv_xd_profile(2, flist)
@@ -131,7 +131,7 @@ def make_nuv_plot():
 	Make one plot per dither position for 2010JL NUV
 	'''
 	pp = PdfPages('2010jl_xd_profile_for_each_dither_nuv.pdf')
-	flist = glob.glob('2010jl_data/*flt.fits')
+	flist = glob.glob('SN2010jl/*flt.fits')
 	fig1 = plot_norm_nuv_xd_profile(1, flist)
 	fig1.savefig(pp, format = 'pdf')
 	fig2 = plot_norm_nuv_xd_profile(2, flist)
@@ -145,6 +145,6 @@ def make_nuv_plot():
 #----------------------------
 #----------------------------
 if __name__ == "__main__":
-	#make_fuv_plot()
+	make_fuv_plot()
 	make_nuv_plot()
 

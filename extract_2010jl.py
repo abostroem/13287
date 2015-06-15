@@ -22,7 +22,7 @@ def make_output_directory(extraction_box_height, extraction_box_start, sn_name, 
 			delete_dir = raw_input('{} exists, delete contents? y, n '.format(new_dir_path))
 			if delete_dir == 'n':
 				sys.exit('Output path already exists and you don\'t want to overwrite it')
-		flist = glob.glob(os.path.join(new_dir_path, '*'))
+		flist = glob.glob(os.path.join(new_dir_path, 'ocdd*'))
 		for ifile in flist:
 			os.remove(ifile)
 	else:
@@ -34,7 +34,7 @@ def make_output_directory(extraction_box_height, extraction_box_start, sn_name, 
 def extract_for_a_single_dither_position(dither_exposure_names, dither_number, dither_step,
 										repo_path, output_dir,
 										extraction_box_start, extraction_box_height,
-										maxsearch = 4):
+										maxsearch = 0):
 	'''
 	Given a list of exposure names (corresponding to a dither number), extract a 1D spectrum
 	using Calstis.x1d.
@@ -68,10 +68,13 @@ def extract_for_a_single_dither_position(dither_exposure_names, dither_number, d
 					os.path.join(output_dir, input_filename))
 		shutil.copy(os.path.join(repo_path, '2010jl_otfr', input_filename.replace('flt', 'wav')),
 					os.path.join(output_dir, input_filename.replace('flt', 'wav')))
+		print input_filename
+		print output_dir
 		x1d(input = os.path.join(output_dir, input_filename),
 			a2center = extraction_box_start + (dither_number -1) * dither_step,
 			extrsize = extraction_box_height,
 			maxsrch = maxsearch,
+			verbose = True,
 			trailer = os.path.join(output_dir, input_filename.replace('flt.fits', 'trl.txt')))
 
 #----------------------------
@@ -87,7 +90,7 @@ def extract_fuv_2010jl():
 	The dither position centers the target at ycenter = 340
 	'''
 	extraction_box_height = 21 #pixels
-	extraction_box_start = 340
+	extraction_box_start = 195.+132. #340
 	dither_step = 40.65
 
 	repo_path = get_repository_path()
@@ -124,7 +127,7 @@ def extract_nuv_2010jl():
 	The dither position centers the target at ycenter = 461 (340 + 120.8)
 	'''
 	extraction_box_height = 21 #pixels
-	extraction_box_start = 461
+	extraction_box_start = 262.+61.
 	dither_step = 40.32
 
 	repo_path = get_repository_path()
@@ -155,5 +158,5 @@ def extract_nuv_2010jl():
 #----------------------------
 #----------------------------
 if __name__ == "__main__":
-	#extract_fuv_2010jl()
+	extract_fuv_2010jl()
 	extract_nuv_2010jl()

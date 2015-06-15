@@ -72,8 +72,6 @@ def make_fuv_finder_plot(stis_img, wfpc2_cc_offset, sn_yloc_stis = 340):
 	ax4.set_ylim(0, 1024)
 	ax4.legend(['STIS'], loc = 4)
 
-
-
 	add_date_to_plot(ax3)
 	pdb.set_trace()
 	pyplot.savefig('2010jl_finder_image_fuv.pdf')
