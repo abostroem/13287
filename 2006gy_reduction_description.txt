@@ -1,6 +1,7 @@
 …slit by offsetting from a nearby star. The location of the supernova was identified by
 matching a simulated cross-dispersion (XD) profile from WFC3 observations (day 2303) with
-the XD profile of the STIS observations (**Did the STIS XD profile include the whole image**)?
+the XD profile of the STIS observations.
+The WFC3 image was first rotated to the same orientation as the STIS observations.
 The XD profile for the WFC3 data was simulated for a number of possible slit positions by
 summing the WFC3 pipeline calibrated files (_drz.fits) in the dispersion direction over ~5
 pixels representing the STIS slit width on the WFC3 detector. The STIS spectrogram was
@@ -11,9 +12,8 @@ profile. We compared WFC3/F814W to STIS/G750L as these observations most closely
 in wavelength coverage and included the H-alpha line which is the strongest line in the
 spectrum. The slit location in the WFC3 image was identified by finding the offset in the
 cross-dispersion direction that creates the best match, in both shape and scale, between
-the WFC3 and STIS XD profiles for each virtual slit position. (**is this true, I seem to
-remember that we had issue with the scale**). Figure 2 highlights the slit position and
-orientation (**we haven’t discussed varying orientation yet, should we?**) on the
+the WFC3 and STIS XD profiles for each virtual slit position. Figure 2 highlights the slit
+position and orientation on the
 WFC3/F814W image (left). On the right the XD profiles of the WFC3 observation (blue) and
 the HST/STIS/G750L observation (green) both normalized to the peak flux. The similarity
 of these two profiles...
@@ -23,16 +23,16 @@ software stistools.x1d
 (http://ssb.stsci.edu/doc/stsci_python_x/stistools.doc/html/x1d.html?highlight=x1d#module-stistools.x1d).
 The default extraction parameters for STIS are defined for an isolated point source. For
 both the G430L and G750L the default extraction box width is 7 pixels while the background
-extraction box width is 5 pixels (**I’m 95% sure this is true from the XTRACTAB - where
-did you get 64/200 from? I think I just made it arbitrarily big when I didn’t know the SN
-was the small bump on the galaxy**). Figure 3 shows the 2D spectrogram for G750L. While
+extraction box width is 5 pixels. Figure 3 shows the 2D spectrogram for G750L. While
 the 2D image is dominated by the galaxy nucleus, the SN trace is faintly visible below the
 galaxy in the region surrounding H-alpha. Due to the closeness of the SN to the bright
-galaxy core and its faintness, we reduce the extraction box size to 3 pixels to optimize
-the S/N (**How did you determine what was optimal?**). The default background extraction
-box size is used, however, we modify the offset from the SN from +/- 300 pixels to ??? to
-subtract a background that more closely resembles the region around the SN.
-
+galaxy core and its faintness, we reduced the extraction box size to 3 pixels to optimize
+the S/N. The optimal extraction location and the background were determined by stepping the
+extraction box up the detector in the region near the supernova. The extraction with the
+highest S/N set the SN extraction location. The 3 extractions above and below the SN
+location were median combined to estimate the background as close to the SN as possible. This
+lead to a background extraction box height of 5 pixels above the SN extraction box and 5
+pixels below the SN extraction box.
 All of the STIS spectra are combined to produce a single spectrum using the splice tool in
 STSDAS (http://stsdas.stsci.edu/cgi-bin/gethelp.cgi?splice). As recommended we ignore the
 edge columns by setting their data quality flags to 4. Figure 4 plots the final,
